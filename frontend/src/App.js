@@ -120,9 +120,9 @@ function InvoiceForm() {
   const subtotal = items.reduce((sum, it) => sum + (Number(it.qnty) || 0) * (Number(it.rate) || 0), 0);
   const cgst = subtotal * 0.025;
   const sgst = subtotal * 0.025;
-  const total = subtotal + cgst + sgst;
-  const totalRupees = Math.floor(total);
-  const totalPaise = Math.round((total - totalRupees) * 100);
+  const rawTotal = subtotal + cgst + sgst;
+  const total = Math.round(rawTotal);
+  const roundOff = +(total - rawTotal).toFixed(2);
 
   const filteredCustomers = customerName
     ? customers.filter(c => c.name.toLowerCase().includes(customerName.toLowerCase())).slice(0, 8)
@@ -146,7 +146,7 @@ function InvoiceForm() {
         qnty: Number(it.qnty) || 0,
         rate: Number(it.rate) || 0,
       })),
-    subtotal, cgst, sgst, total,
+    subtotal, cgst, sgst, round_off: roundOff, total,
     amount_in_words: rupeesInWords(total),
   });
 
@@ -389,12 +389,18 @@ function InvoiceForm() {
               </td>
             </tr>
             <tr>
-              <td colSpan="7" rowSpan="2" className="bill-gst-foot">
+              <td colSpan="7" rowSpan="3" className="bill-gst-foot">
                 GSTIN : 27ANSPK4430F1ZW
               </td>
               <td className="bill-tax-label">SGST 2.5%</td>
               <td className="bill-tax-val text-right" data-testid="sgst-value">
                 {sgst > 0 ? sgst.toFixed(2) : ""}
+              </td>
+            </tr>
+            <tr>
+              <td className="bill-tax-label">Round Off</td>
+              <td className="bill-tax-val text-right" data-testid="round-off-value">
+                {rawTotal > 0 ? (roundOff >= 0 ? "+" : "") + roundOff.toFixed(2) : ""}
               </td>
             </tr>
             <tr>
@@ -443,8 +449,7 @@ function InvoiceForm() {
           − Remove Last Row
         </button>
         <div className="ml-auto text-sm text-stone-600">
-          Subtotal: ₹{subtotal.toFixed(2)} &nbsp;|&nbsp; CGST: ₹{cgst.toFixed(2)} &nbsp;|&nbsp; SGST: ₹{sgst.toFixed(2)} &nbsp;|&nbsp; <span className="font-bold text-red-800">Total: ₹{total.toFixed(2)}</span>
-          {totalPaise > 0 && <span className="text-xs text-stone-500"> ({totalPaise}p)</span>}
+          Subtotal: ₹{subtotal.toFixed(2)} &nbsp;|&nbsp; CGST: ₹{cgst.toFixed(2)} &nbsp;|&nbsp; SGST: ₹{sgst.toFixed(2)} &nbsp;|&nbsp; Round Off: ₹{roundOff.toFixed(2)} &nbsp;|&nbsp; <span className="font-bold text-red-800">Total: ₹{total.toFixed(2)}</span>
         </div>
       </div>
     </div>

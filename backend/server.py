@@ -50,6 +50,7 @@ class Invoice(BaseModel):
     subtotal: float = 0
     cgst: float = 0
     sgst: float = 0
+    round_off: float = 0
     total: float = 0
     amount_in_words: str = ""
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
@@ -69,6 +70,7 @@ class InvoiceCreate(BaseModel):
     subtotal: float = 0
     cgst: float = 0
     sgst: float = 0
+    round_off: float = 0
     total: float = 0
     amount_in_words: str = ""
 
