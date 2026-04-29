@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ---------- Bill paper ---------- */
+.bill-paper {
+  width: 800px;
+  max-width: 100%;
+  background: #fffdf7;
+  border: 1.5px solid #5a1f1c;
+  padding: 14px 18px 18px 18px;
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: #2b2b2b;
+  position: relative;
+  box-shadow: 0 12px 24px rgba(40, 20, 10, 0.08);
+}
+
+.bill-subject {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  color: #2b2b2b;
+  letter-spacing: 0.2px;
+}
+
+.bill-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: #5a1f1c;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 1.05;
+}
+
+.bill-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #2b2b2b;
+  margin-top: 2px;
+}
+
+.bill-address {
+  font-size: 11.5px;
+  margin-top: 4px;
+  color: #2b2b2b;
+}
+
+.bill-email {
+  font-size: 11.5px;
+  color: #2b2b2b;
+}
+
+.bill-gst-top {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #5a1f1c;
+  margin-top: 2px;
+}
+
+.bill-tax-invoice {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  color: #2b2b2b;
+}
+
+/* ---------- Top customer + order/bill grid ---------- */
+.bill-grid-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0;
+  border: 1.5px solid #5a1f1c;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.bill-cust-box {
+  border-right: 1.5px solid #5a1f1c;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 78px;
+}
+
+.bill-meta-box {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bill-row, .bill-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bill-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2b2b2b;
+  white-space: nowrap;
+}
+
+.bill-input {
+  border: none;
+  border-bottom: 1px dotted #999;
+  background: transparent;
+  font-size: 12.5px;
+  padding: 2px 4px;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  color: #1a1a1a;
+  width: 100%;
+}
+.bill-input:focus { border-bottom: 1px solid #5a1f1c; }
+
+/* ---------- Items Table ---------- */
+.bill-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  border: 1.5px solid #5a1f1c;
+  font-size: 11.5px;
+  table-layout: fixed;
+}
+
+.bill-table thead th {
+  background: #fffdf7;
+  border: 1px solid #5a1f1c;
+  padding: 4px 4px;
+  font-weight: 600;
+  color: #2b2b2b;
+  font-size: 11.5px;
+  text-align: center;
+}
+
+.bill-amount-th { padding: 0 !important; vertical-align: top; }
+.bill-amount-th-top {
+  border-bottom: 1px solid #5a1f1c;
+  padding: 3px 0;
+  font-weight: 600;
+}
+.bill-amount-th-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.bill-amount-th-bottom span:first-child { border-right: 1px solid #5a1f1c; padding: 3px 0; }
+.bill-amount-th-bottom span:last-child { padding: 3px 0; }
+
+.bill-table tbody td {
+  border: 1px solid #5a1f1c;
+  padding: 0;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.bill-cell {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 11.5px;
+  padding: 2px 4px;
+  font-family: 'Poppins', sans-serif;
+  color: #1a1a1a;
+  -moz-appearance: textfield;
+}
+.bill-cell::-webkit-outer-spin-button,
+.bill-cell::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.bill-cell.text-right { text-align: right; }
+
+.bill-amt-rs, .bill-amt-ps {
+  padding: 2px 4px !important;
+  font-size: 11.5px;
+}
+
+/* ---------- Totals row ---------- */
+.bill-words-cell {
+  padding: 4px 6px !important;
+  vertical-align: top !important;
+  height: auto !important;
+  text-align: left;
+}
+.bill-words-label {
+  font-size: 10.5px;
+  color: #5a1f1c;
+  font-weight: 600;
+}
+.bill-words-value {
+  font-size: 11.5px;
+  font-weight: 500;
+  margin-top: 2px;
+  font-style: italic;
+  color: #2b2b2b;
+  min-height: 14px;
+}
+
+.bill-tax-label, .bill-total-label {
+  padding: 3px 6px !important;
+  font-weight: 600;
+  text-align: left;
+  font-size: 11px;
+}
+.bill-total-label { font-weight: 700; color: #5a1f1c; }
+.bill-tax-val, .bill-total-val {
+  padding: 3px 6px !important;
+  font-size: 11.5px;
+}
+.bill-total-val { font-weight: 700; color: #5a1f1c; }
+
+.bill-gst-foot {
+  padding: 6px 8px !important;
+  font-weight: 700;
+  vertical-align: middle !important;
+  text-align: left;
+  color: #5a1f1c;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+
+/* ---------- Footer ---------- */
+.bill-footer {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  border: 1.5px solid #5a1f1c;
+  border-top: none;
+  padding: 8px 10px;
+  font-size: 11.5px;
+}
+.bill-footer-left { display: flex; align-items: center; flex-wrap: wrap; }
+.bill-pay-days { width: 80px !important; display: inline-block; text-align: center; }
+.bill-footer-right {
+  border-left: 1.5px solid #5a1f1c;
+  padding-left: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 50px;
+}
+.bill-footer-right-top { font-weight: 700; color: #5a1f1c; font-size: 12px; }
+.bill-footer-right-bottom {
+  border-top: 1px dotted #999;
+  padding-top: 4px;
+  font-size: 10.5px;
+  color: #555;
+  margin-top: auto;
+}
+
+/* ---------- Print ---------- */
+@media print {
+  body { background: #fff !important; }
+  .bill-paper {
+    box-shadow: none !important;
+    border: 1.5px solid #5a1f1c !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 10px !important;
+  }
+  .print\:hidden { display: none !important; }
+  @page { size: A4; margin: 8mm; }
+}
+
+/* ---------- Reset App-header lurking from CRA ---------- */
+.App-header { background: transparent !important; min-height: 0 !important; }
