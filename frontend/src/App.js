@@ -173,11 +173,37 @@ function InvoiceForm() {
     if (!billRef.current) return;
     setDownloading(true);
     try {
-      // Force higher resolution capture
       const canvas = await html2canvas(billRef.current, {
         scale: 2,
         useCORS: true,
         backgroundColor: "#ffffff",
+        onclone: (clonedDoc) => {
+          // html2canvas does not paint live React-controlled <input> values.
+          // Replace each input/textarea inside the cloned bill with a span
+          // showing its current value so the captured image matches the screen.
+          const root = clonedDoc.querySelector('[data-testid="bill-paper"]');
+          if (!root) return;
+          const fields = root.querySelectorAll("input, textarea");
+          fields.forEach((el) => {
+            const value = el.value || "";
+            const span = clonedDoc.createElement("span");
+            span.textContent = value;
+            // Copy alignment for right-aligned numeric cells
+            const cs = clonedDoc.defaultView.getComputedStyle(el);
+            span.style.display = "inline-block";
+            span.style.width = "100%";
+            span.style.fontSize = cs.fontSize;
+            span.style.fontFamily = cs.fontFamily;
+            span.style.fontWeight = cs.fontWeight;
+            span.style.color = cs.color;
+            span.style.textAlign = cs.textAlign;
+            span.style.padding = cs.padding;
+            span.style.lineHeight = cs.lineHeight;
+            span.style.whiteSpace = "pre-wrap";
+            span.style.wordBreak = "break-word";
+            el.parentNode.replaceChild(span, el);
+          });
+        },
       });
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
