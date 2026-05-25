@@ -269,7 +269,7 @@ function InvoiceForm() {
         data-testid="bill-paper"
       >
         {/* Top: Subject + brand */}
-        <div className="text-right pr-3 pt-2">
+        <div className="text-center pt-2">
           <span className="bill-subject" data-testid="bill-subject">Subject to Kalyan Jurisdiction</span>
         </div>
 
